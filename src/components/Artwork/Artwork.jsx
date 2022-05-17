@@ -3,13 +3,11 @@ import { useParams } from 'react-router-dom';
 
 const Artwork = ({title, img}) => {
 
-  const {artId} = useParams();
+  // const {artId} = useParams();
 
   return (
     <div>
-      title: {title}
-      img: {img}
-      {artId}
+      <img src={img} alt='expensive art'/>
     </div>
   )
 }

@@ -6,11 +6,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import allArtReducer from './features/allArt';
 import favoritesReducer from './features/favorites';
+import themeReducer from './features/theme';
 
 const store = configureStore({
   reducer: {
     allArt: allArtReducer,
-    favorites: favoritesReducer
+    favorites: favoritesReducer,
+    theme: themeReducer
   }
 });
 

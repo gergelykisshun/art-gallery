@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const artSlice = createSlice({
   name: "allArt",
-  initialState: { value: ['art1', 'art2', 'art3'] },
+  initialState: { value: [] },
   reducers: {
     fetchArt: (state, action) => {
-      state.value = action.payload;
+      state.value = [...state.value, action.payload];
     }
   }
 })
