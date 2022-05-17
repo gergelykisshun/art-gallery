@@ -1,12 +1,16 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 
-const Artwork = () => {
+const Artwork = ({title, img}) => {
 
   const {artId} = useParams();
 
   return (
-    <div>This is {artId}</div>
+    <div>
+      title: {title}
+      img: {img}
+      {artId}
+    </div>
   )
 }
 

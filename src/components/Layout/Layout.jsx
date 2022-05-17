@@ -36,16 +36,16 @@ const Layout = ({children}) => {
         <nav className='sidebar'>
           <div className='navlink-container'>
             <Link to='/' className='sidebar-title'>
-              Bug-tracker <AdbIcon/> 
+              ICF-Gallery 
             </Link>
-            <NavLink to='/my-projects'>My projects</NavLink>
-            <NavLink to='/my-account'>My account</NavLink>
+            <NavLink to='/my-favorites'>Favorites</NavLink>
+            <NavLink to='/'>Artworks</NavLink>
           </div>
-
+{/* 
               <Link className='primary-btn new-project-btn' to='/new-project'>
                 New project
                 <AddBoxOutlinedIcon/>
-              </Link>
+              </Link> */}
 
         </nav>
         <toastMessageContext.Provider value={{removeToast: removeToastMessage, showToast: showToastMessage, toastInfo: toastMessage}}>
