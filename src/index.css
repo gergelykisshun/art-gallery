@@ -1,13 +1,101 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  background: transparent;
+  font-family: inherit;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
+}
+
+a img {
+  border: none;
+}
+
+button,
+a {
+  cursor: pointer;
+  color: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+button,
+textarea,
+select {
+  appearance: none !important;
+  border-radius: 0;
+}
+
+/*CSS RESET OVER*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+:root{
+  --text-inactive: #AAABB0;
+  --text-active: #FAFAFC;
+  --bg-card: #3A393E;
+  --bg2: #25232E;
+  --bg3-form: #555459;
+  --primary-color: #08A7F3;
+  --border-radius: 12px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #1A1A1C;
+  font-family: 'Inter', sans-serif;
+}
+
+.primary-btn {
+  min-width: 80px;
+  height: 48px;
+  padding: 8px;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius);
+  color: var(--text-active);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.primary-btn:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.secondary-btn {
+  min-width: 80px;
+  height: 48px;
+  padding: 8px;
+  background-color: var(--bg3-form);
+  border-radius: var(--border-radius);
+  color: var(--text-active);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.secondary-btn:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+.general-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  background-color: var(--bg-card);
+  color: var(--text-inactive);
+  border-radius: var(--border-radius);
+}
+
+.loading-spinner{
+  width: 10px;
+  height: 10px;
 }

@@ -1,0 +1,33 @@
+.toast-msg-container{
+  position: fixed;
+  top: 5vh;
+  right: -5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--bg-card);
+  color: var(--text-active);
+  z-index: 10;
+}
+
+
+.toast-fade-in {
+  animation-name: toastFadeIn;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+}
+
+
+@keyframes toastFadeIn {
+  0% {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(-50%, 0px);
+  }
+}
