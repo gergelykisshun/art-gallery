@@ -12,22 +12,22 @@ export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async 
   await dispatch(fetchArt());
 
   const state = getState();
-  const resultArray =[];
+  const allArtArray = state.allArt.artworks.data;
+  const iiif_api = state.allArt.artworks.config.iiif_url;
+  const result = []
 
-  return state.allArt.artworks.data.map( (img) => {
+  allArtArray.map( async (img) => {
     if(img.image_id){
-      return fetch(`${state.allArt.artworks.config.iiif_url}/${img.image_id}/full/843,/0/default.jpg`)
-      .then(res => {
-        if(res.url){
-          return res.url
-        } else {
-          console.log('it is what it is')
-        }
-      })
+      const res = await fetch(`${iiif_api}/${img.image_id}/full/843,/0/default.jpg`)
+      console.log(res.url)
+      result.push(res.url);
     } else {
-     return 'no url found';
+      result.push('no url found');
     }
   });
+
+
+  return result;
 }));
 
 export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {dispatch}) => {
