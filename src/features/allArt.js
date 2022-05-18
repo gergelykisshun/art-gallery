@@ -14,20 +14,15 @@ export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async 
   const state = getState();
   const allArtArray = state.allArt.artworks.data;
   const iiif_api = state.allArt.artworks.config.iiif_url;
-  const result = []
 
-  allArtArray.map( async (img) => {
+  return await Promise.all(allArtArray.map( async (img) => {
     if(img.image_id){
       const res = await fetch(`${iiif_api}/${img.image_id}/full/843,/0/default.jpg`)
-      console.log(res.url)
-      result.push(res.url);
+      return res.url;
     } else {
-      result.push('no url found');
+      return null;
     }
-  });
-
-
-  return result;
+  }));
 }));
 
 export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {dispatch}) => {
@@ -36,21 +31,6 @@ export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {disp
     const allArtData = await res.json();
     return allArtData;
 
-    // const imgArray = allArtData.data;
-
-
-    // // const resultArray =[];
-
-    // // imgArray.map(async (img) => {
-    // //   if(img.image_id){
-    // //     const res = await fetch(`${allArtData.config.iiif_url}/${img.image_id}/full/843,/0/default.jpg`);
-    // //     img.img_url = res.url;
-    // //   }
-    // //   resultArray.push(img);
-    // // });
-
-
-    // return imgArray;
   }catch (err) {
     console.log(err);
   }

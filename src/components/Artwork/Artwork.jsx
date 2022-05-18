@@ -5,14 +5,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const Artwork = ({info}) => {
+const Artwork = ({info, image}) => {
 
   const {artId} = useParams();
-  const {title, img_url} = info;
+  const {title} = info;
 
   return (
     <div className='artwork-card'>
-      <img src={img_url} alt="artwork" />
+      <img src={image} alt="artwork" />
       <h2>{title}</h2>
       <FavoriteBorderIcon />
       <button>

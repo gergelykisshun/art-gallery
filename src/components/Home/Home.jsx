@@ -12,7 +12,7 @@ const Home = () => {
 
   //REDUX
   const dispatch = useDispatch()
-  const allArt = useSelector(state => state.allArt.artworks);
+  const allArt = useSelector(state => state.allArt.artworks.data);
   const artStatus = useSelector(state => state.allArt.status);
   const artImages = useSelector(state => state.allArt.images);
 
@@ -41,7 +41,7 @@ const Home = () => {
   if(artStatus === 'loading'){
     content = <CircularProgress />
   } else if (artStatus === 'succeeded'){
-    // content = allArt.map((art) => <Artwork key={art.id} info={art}/>)
+    content = allArt.map((art,i) => artImages[i] && <Artwork key={art.id} image={artImages[i]} info={art}/>)
   } else if (artStatus === 'failed'){
     content = <div>Error page should come heres</div>
   }
