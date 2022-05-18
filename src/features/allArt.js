@@ -14,13 +14,13 @@ export const fetchArt = createAsyncThunk('allArt/fetchArt', async () => {
     
     const imgArray = allArtData.data;
     const imgUrlArray = [];
-    imgArray.map(async (img) => {
+    imgArray.forEach(async (img) => {
       try {
         if(img.image_id){
           const res = await fetch(`${allArtData.config.iiif_url}/${img.image_id}/full/843,/0/default.jpg`);
-          return res.url;
+          imgUrlArray.push(res.url);
         } else {
-          return 'not url found'
+          imgUrlArray.push('no url found')
         }
       } catch (err){
         console.log(err);
@@ -31,20 +31,9 @@ export const fetchArt = createAsyncThunk('allArt/fetchArt', async () => {
       img.image_url = imgUrlArray[i];
       return img;
     });
-
   }catch (err) {
     console.log(err);
   }
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     const imgInfo = data.data;
-  //     // console.log(imgInfo);
-  //     imgInfo.forEach(img => {
-  //       fetch(`${data.config.iiif_url}/${img.image_id}/full/843,/0/default.jpg`)
-  //       .then(res => {
-  //         dispatch(fetchArt(res));
-  //       })
-  //     })
 })
 
 export const artSlice = createSlice({
