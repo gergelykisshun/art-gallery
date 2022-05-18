@@ -7,7 +7,8 @@ const Artwork = ({title, img}) => {
 
   return (
     <div>
-      <img src={img} alt='expensive art'/>
+      {/* <img src={img} alt='expensive art'/> */}
+      Display Artwork
     </div>
   )
 }
