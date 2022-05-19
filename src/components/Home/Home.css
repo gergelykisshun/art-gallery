@@ -25,10 +25,10 @@
   gap: 5px;
 }
 
-.pagination-container .pagination-btn {
+/* .pagination-container .search-bar-btn {
   height: 35px;
   padding: 8px;
-}
+} */
 
 .results-per-page-input-container {
   display: flex;
@@ -38,9 +38,8 @@
 }
 
 
-.results-per-page-input {
-  width: 100%;
-  height: 48px;
+.input-style {
+  height: 30px;
   padding-inline: 15px;
   border-bottom: 1px solid var(--text-inactive);
   color: var(--text-active);

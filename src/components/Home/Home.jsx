@@ -22,6 +22,8 @@ const Home = () => {
     currentPage: 1
   })
 
+  const [search, setSearch] = useState('');
+
   //FAVS
   // const favorites = useSelector(state => state.favorites.value);
 
@@ -60,9 +62,10 @@ const Home = () => {
   console.log(allArt)
   console.log(artStatus)
   console.log(artImages)
+  console.log(search)
 
-  const searchInputHandler = () => {
-
+  const searchInputHandler = (e) => {
+    setSearch(e.target.value);
   };
 
   const changeResultsPerPage = (e) => {
@@ -91,15 +94,18 @@ const Home = () => {
   return (
     <>
       <div className='search-bar'>
-        <input type="text" name='search' onChange={searchInputHandler}/>
+        <div>
+          <input className="input-style" type="text" name='search' value={search} onChange={searchInputHandler}/>
+          <button className='primary-btn'>Search</button>
+        </div>
         <div className='pagination-container'>
-          {pagination.currentPage > 1 && <button className="primary-btn pagination-btn" onClick={decreasePageNumber}>Previous page</button>}
+          {pagination.currentPage > 1 && <button className="primary-btn" onClick={decreasePageNumber}>Previous page</button>}
           <p>{pagination.currentPage}</p>
-          <button className="primary-btn pagination-btn" onClick={incrementPageNumber}>Next page</button>
+          <button className="primary-btn" onClick={incrementPageNumber}>Next page</button>
         </div>
         <label className='results-per-page-input-container'>
           Results per page
-          <input className="results-per-page-input" type="number" name="resultsPerPage" min="1" max="100" value={pagination.resultsPerPage} onChange={changeResultsPerPage}/>
+          <input className="input-style" type="number" name="resultsPerPage" min="1" max="100" value={pagination.resultsPerPage} onChange={changeResultsPerPage}/>
         </label>
       </div>
       {content}
