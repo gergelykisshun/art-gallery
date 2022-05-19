@@ -4,6 +4,8 @@ import { fetchImagesForArt, changeResultsPerPage, decreasePageNumber, incrementP
 import Artwork from '../Artwork/Artwork';
 import CircularProgress from '@mui/material/CircularProgress';
 import './Home.css';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 
@@ -70,18 +72,18 @@ const Home = () => {
   return (
     <>
       <div className='search-bar'>
-        <div>
+        <div className='search-container'>
           <input className="input-style" type="text" name='search' value={search} onChange={searchInputHandler}/>
           <button onClick={startSearchHandler} className='primary-btn'>Search</button>
         </div>
         <div className='pagination-container'>
-          {pagination.currentPage > 1 && <button className="primary-btn" onClick={decreasePageHandler}>Previous page</button>}
+          {pagination.currentPage > 1 && <ArrowBackIosIcon className="pagination-arrow" onClick={decreasePageHandler}/>}
           <p>{pagination.currentPage}</p>
-          <button className="primary-btn" onClick={incrementPageHandler}>Next page</button>
+          <ArrowForwardIosIcon className="pagination-arrow" onClick={incrementPageHandler}/>
         </div>
         <label className='results-per-page-input-container'>
           Results per page
-          <input className="input-style" type="number" name="resultsPerPage" min="1" max="100" value={pagination.resultsPerPage} onChange={changeResultsHandler}/>
+          <input className="input-style results-counter" type="number" name="resultsPerPage" min="1" max="100" value={pagination.resultsPerPage} onChange={changeResultsHandler}/>
         </label>
       </div>
       {content}

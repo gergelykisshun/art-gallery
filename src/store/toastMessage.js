@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    isVisible: true,
-    msg: 'testestestes'
+    isVisible: false,
+    msg: ''
 };
 
 export const toastSlice = createSlice({
