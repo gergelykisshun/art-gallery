@@ -27,16 +27,39 @@ const ArtworkDetails = () => {
     dispatch(removeFavorite(artWork.id));
   };
 
+  const {title, artist_display, department_title} = artWork
+
+  let favoriteButton;
+
+  if(isFavorite){
+    favoriteButton = 
+    <div onClick={removeFromFavorites} className="rm-fav-container">
+      <FavoriteBorderIcon className='favorite-heart-icon'/>
+      <span>Remove from favorites</span>
+    </div>
+  } else {
+    favoriteButton =
+    <div onClick={addToFavorites} className="rm-fav-container">
+      <FavoriteIcon className='favorite-heart-icon'/>
+      <span>Add to favorites</span>
+    </div>
+  }
+
 
 
   return (
-    <>
-      <p>{artId}</p>
-      <img src={imageUrl} alt="artwork"/>
-      <div>{artWork.title}</div> 
-      {isFavorite ? <FavoriteIcon onClick={removeFromFavorites} className='favorite-heart-icon'/> : <FavoriteBorderIcon onClick={addToFavorites} className='favorite-heart-icon'/>}
-      <Link to="/">Back</Link>
-    </>
+    <div className='individual-card-wrapper'>
+      <div style={{transform: 'translateY(-80px)'}} className='general-card'>
+        <img className='general-card-img' src={imageUrl} alt="artwork" />
+        <div className='general-card-info'>
+          <h2>{title}</h2>
+          <h3>{artist_display}</h3>
+          <p>{department_title}</p>
+          {favoriteButton}
+          <Link className="back-to-home-btn" to="/">Back to Home</Link>
+        </div>
+      </div>
+    </div>
   )
 }
 

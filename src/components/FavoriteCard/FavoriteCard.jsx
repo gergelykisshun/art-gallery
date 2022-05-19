@@ -23,9 +23,9 @@ const FavoriteCard = ({info, image}) => {
   };
 
   return (
-    <div className='favorite-card'>
-      <img className='favorite-img' src={image} alt="artwork" />
-      <div className='favorite-info'>
+    <div className='general-card'>
+      <img className='general-card-img' src={image} alt="artwork" />
+      <div className='general-card-info'>
         {isRemoving ?
           <>
             <h3 className='remove-question'>Remove from favorites?</h3>
