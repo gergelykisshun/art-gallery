@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import allArtReducer from './features/allArt';
-import favoritesReducer from './features/favorites';
-import themeReducer from './features/theme';
+import allArtReducer from './store/allArt';
+import favoritesReducer from './store/favorites';
+import themeReducer from './store/theme';
 
 const store = configureStore({
   reducer: {

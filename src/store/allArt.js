@@ -8,8 +8,8 @@ const initialState = {
   error: null
 }
 
-export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async (params, {dispatch, getState}) => {
-  await dispatch(fetchArt());
+export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async (pagination, {dispatch, getState}) => {
+  await dispatch(fetchArt(pagination));
 
   const state = getState();
   const allArtArray = state.allArt.artworks.data;
@@ -25,9 +25,10 @@ export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async 
   }));
 }));
 
-export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {dispatch}) => {
+export const fetchArt = createAsyncThunk('allArt/fetchArt', async (pagination, {dispatch}) => {
   try{
-    const res = await fetch('https://api.artic.edu/api/v1/artworks');
+    const { currentPage, resultsPerPage } = pagination;
+    const res = await fetch(`https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=${resultsPerPage}&fields=id,title,artist_display,image_id,department_title`);
     const allArtData = await res.json();
     return allArtData;
 

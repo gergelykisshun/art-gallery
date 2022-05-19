@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchImagesForArt } from '../../features/allArt';
+import { fetchImagesForArt } from '../../store/allArt';
 import Artwork from '../Artwork/Artwork';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -16,14 +16,17 @@ const Home = () => {
   const artStatus = useSelector(state => state.allArt.status);
   const artImages = useSelector(state => state.allArt.images);
 
+  const [pagination, setPagination] = useState({
+    resultsPerPage: 25,
+    currentPage: 1
+  })
+
   //FAVS
   // const favorites = useSelector(state => state.favorites.value);
 
   useEffect(() => {
-    if(artStatus === 'idle'){
-      dispatch(fetchImagesForArt())    
-    }
-  }, [dispatch])
+    dispatch(fetchImagesForArt(pagination))    
+  }, [dispatch, pagination])
 
 
 
