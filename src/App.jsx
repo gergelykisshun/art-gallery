@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Home from './components/Home/Home';
 import MyFavorites from './components/MyFavorites/MyFavorites';
-import Artwork from './components/Artwork/Artwork';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import ArtworkDetails from './components/ArtworkDetails/ArtworkDetails';
 

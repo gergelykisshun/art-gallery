@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImagesForArt, changeResultsPerPage, decreasePageNumber, incrementPageNumber } from '../../store/allArt';
-import { addFavorite, removeFavorite } from '../../store/favorites';
 import Artwork from '../Artwork/Artwork';
 import CircularProgress from '@mui/material/CircularProgress';
 import './Home.css';
