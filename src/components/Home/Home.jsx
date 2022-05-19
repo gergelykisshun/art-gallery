@@ -65,6 +65,14 @@ const Home = () => {
 
   };
 
+  const changeResultsPerPage = (e) => {
+    const {name, value} = e.target
+    setPagination(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   const incrementPageNumber = () => {
     setPagination(prev => ({
       ...prev, 
@@ -84,12 +92,15 @@ const Home = () => {
     <>
       <div className='search-bar'>
         <input type="text" name='search' onChange={searchInputHandler}/>
-        <div>
-          <button onClick={incrementPageNumber}>Next page</button>
+        <div className='pagination-container'>
+          {pagination.currentPage > 1 && <button className="primary-btn pagination-btn" onClick={decreasePageNumber}>Previous page</button>}
           <p>{pagination.currentPage}</p>
-          {pagination.currentPage > 1 && <button onClick={decreasePageNumber}>Previous page</button>}
+          <button className="primary-btn pagination-btn" onClick={incrementPageNumber}>Next page</button>
         </div>
-        <input type="number" name="resultsPerPage" min="1" max="100" />
+        <label className='results-per-page-input-container'>
+          Results per page
+          <input className="results-per-page-input" type="number" name="resultsPerPage" min="1" max="100" value={pagination.resultsPerPage} onChange={changeResultsPerPage}/>
+        </label>
       </div>
       {content}
     </>

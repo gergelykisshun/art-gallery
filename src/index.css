@@ -63,7 +63,7 @@ body {
   min-width: 80px;
   height: 48px;
   padding: 8px;
-  background-color: var(--primary-color);
+  background: linear-gradient(var(--primary-shade-from), var(--primary-shade-to));
   border-radius: var(--border-radius);
   color: var(--text-active);
   font-size: 16px;
