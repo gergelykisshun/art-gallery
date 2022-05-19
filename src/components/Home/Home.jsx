@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImagesForArt, changeResultsPerPage, decreasePageNumber, incrementPageNumber } from '../../store/allArt';
+import { addFavorite, removeFavorite } from '../../store/favorites';
 import Artwork from '../Artwork/Artwork';
 import CircularProgress from '@mui/material/CircularProgress';
 import './Home.css';
 
 
-// import { addFavorite, removeFavorite } from '../../features/favorites';
 
 
 const Home = () => {
@@ -96,10 +96,6 @@ const Home = () => {
       </div>
       {content}
     </>
-      // {/* {favorites.map(fav => <p>{fav}</p>)}
-      // <button onClick={addHandler}>add</button>
-      // <button onClick={removeHandler}>remove</button> */}
-
-)
+  )
 }
 export default Home;

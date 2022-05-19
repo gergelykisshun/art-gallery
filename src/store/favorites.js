@@ -1,17 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
+const localFavorites = JSON.parse(window.localStorage.getItem('icf-gallery-favorites'))
+const initialState = {
+  favorites : localFavorites ? localFavorites : []
+};
+
 export const favoritesSlice = createSlice({
   name: 'favorites',
-  initialState: {value: ['']},
+  initialState,
   reducers: {
     addFavorite: (state, action) => {
-      state.value = [...state.value, action.payload]
+      state.favorites.push(action.payload);
+      window.localStorage.setItem('icf-gallery-favorites', JSON.stringify(state.favorites));
     },
-
-    removeFavorite: (state) => {
-      const prev = [...state.value];
-      prev.pop();
-      state.value = prev;
+    
+    removeFavorite: (state, action) => {
+      state.favorites = state.favorites.filter(fav => fav.info.id !== action.payload);
+      window.localStorage.setItem('icf-gallery-favorites', JSON.stringify(state.favorites));
     }
   }
 })
