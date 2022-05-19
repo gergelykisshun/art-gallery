@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './Layout.css';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import AdbIcon from '@mui/icons-material/Adb';
 import ToastMessage from '../ToastMessage/ToastMessage';
 
 export const toastMessageContext = React.createContext();
