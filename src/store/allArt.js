@@ -8,7 +8,7 @@ const initialState = {
     resultsPerPage: 25,
     currentPage: 1
   },
-  searchQuery: 'van gogh',
+  searchQuery: '',
   status: 'idle',
   error: null
 }
