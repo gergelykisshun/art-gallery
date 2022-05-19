@@ -8,7 +8,7 @@ const initialState = {
     resultsPerPage: 25,
     currentPage: 1
   },
-  searchQuery: '',
+  searchQuery: 'van gogh',
   status: 'idle',
   error: null
 }
@@ -35,7 +35,7 @@ export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {disp
   try{
     const { searchQuery } = state.allArt;
     const { currentPage, resultsPerPage } = state.allArt.pagination;
-    const res = await fetch(`https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=${resultsPerPage}&fields=id,title,artist_display,image_id,department_title`);
+    const res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${searchQuery}&page=${currentPage}&limit=${resultsPerPage}&fields=id,title,artist_display,image_id,department_title`);
     const allArtData = await res.json();
     return allArtData;
 
@@ -56,6 +56,9 @@ export const artSlice = createSlice({
     },
     decreasePageNumber: (state) => {
       state.pagination.currentPage -= 1;
+    },
+    startSearch: (state, action) => {
+      state.searchQuery = action.payload;
     }
   },
   extraReducers: builder => {
@@ -80,6 +83,6 @@ export const artSlice = createSlice({
   }
 })
 
-export const { changeResultsPerPage, incrementPageNumber, decreasePageNumber } = artSlice.actions;
+export const { changeResultsPerPage, incrementPageNumber, decreasePageNumber, startSearch } = artSlice.actions;
 
 export default artSlice.reducer;

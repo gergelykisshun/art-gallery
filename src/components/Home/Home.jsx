@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchImagesForArt, changeResultsPerPage, decreasePageNumber, incrementPageNumber } from '../../store/allArt';
+import { fetchImagesForArt, changeResultsPerPage, decreasePageNumber, incrementPageNumber, startSearch } from '../../store/allArt';
 import Artwork from '../Artwork/Artwork';
 import CircularProgress from '@mui/material/CircularProgress';
 import './Home.css';
@@ -16,28 +16,14 @@ const Home = () => {
   const artStatus = useSelector(state => state.allArt.status);
   const artImages = useSelector(state => state.allArt.images);
   const pagination = useSelector(state => state.allArt.pagination);
-
-
+  const searchQuery = useSelector(state => state.allArt.searchQuery);
 
   const [search, setSearch] = useState('');
 
-  //FAVS
-  // const favorites = useSelector(state => state.favorites.value);
-
   useEffect(() => {
     dispatch(fetchImagesForArt())    
-  }, [dispatch, pagination])
+  }, [dispatch, pagination, searchQuery])
 
-
-
-
-  // const addHandler = () => {
-  //   dispatch(addFavorite(Math.random()));
-  // };
-
-  // const removeHandler = () => {
-  //   dispatch(removeFavorite());
-  // };
 
   let content;
 
@@ -59,9 +45,14 @@ const Home = () => {
   // console.log(artStatus)
   // console.log(artImages)
   // console.log(search)
+  console.log(searchQuery)
 
   const searchInputHandler = (e) => {
     setSearch(e.target.value);
+  };
+
+  const startSearchHandler = () => {
+    dispatch(startSearch(search));
   };
 
   const changeResultsHandler = (e) => {
@@ -81,7 +72,7 @@ const Home = () => {
       <div className='search-bar'>
         <div>
           <input className="input-style" type="text" name='search' value={search} onChange={searchInputHandler}/>
-          <button className='primary-btn'>Search</button>
+          <button onClick={startSearchHandler} className='primary-btn'>Search</button>
         </div>
         <div className='pagination-container'>
           {pagination.currentPage > 1 && <button className="primary-btn" onClick={decreasePageHandler}>Previous page</button>}
