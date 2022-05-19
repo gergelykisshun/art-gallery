@@ -8,6 +8,7 @@ const initialState = {
     resultsPerPage: 25,
     currentPage: 1
   },
+  searchQuery: '',
   status: 'idle',
   error: null
 }
@@ -32,6 +33,7 @@ export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async 
 export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {dispatch, getState}) => {
   const state = getState();
   try{
+    const { searchQuery } = state.allArt;
     const { currentPage, resultsPerPage } = state.allArt.pagination;
     const res = await fetch(`https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=${resultsPerPage}&fields=id,title,artist_display,image_id,department_title`);
     const allArtData = await res.json();

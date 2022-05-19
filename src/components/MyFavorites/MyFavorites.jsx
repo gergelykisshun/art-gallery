@@ -1,5 +1,6 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import FavoriteCard from '../FavoriteCard/FavoriteCard';
 
 
@@ -12,7 +13,7 @@ const MyFavorites = () => {
     <>
       {
         allFavorites.length === 0 ? 
-        <div>You have no favorites, yet! <strong>Check out our Artworks!</strong></div> :
+        <div>You have no favorites, yet! <Link style={{textDecoration:'underline', color:'var(--primary-color)'}} to="/">Check out our Artworks!</Link></div> :
         allFavorites.map(({info, image}) => <FavoriteCard info={info} image={image}/>)
       }
     </>
