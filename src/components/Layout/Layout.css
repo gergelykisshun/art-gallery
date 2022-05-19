@@ -54,9 +54,3 @@
     background: linear-gradient( var(--primary-shade-from) , var(--primary-shade-to) );
     border-radius: var(--border-radius);    
 }
-
-.new-project-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}

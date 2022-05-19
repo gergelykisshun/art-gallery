@@ -1,7 +1,7 @@
 .toast-msg-container{
   position: fixed;
   top: 5vh;
-  right: -5vw;
+  right: 5vw;
   display: flex;
   align-items: center;
   justify-content: space-between;

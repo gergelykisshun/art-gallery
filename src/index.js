@@ -7,12 +7,14 @@ import { Provider } from 'react-redux';
 import allArtReducer from './store/allArt';
 import favoritesReducer from './store/favorites';
 import themeReducer from './store/theme';
+import toastReducer from './store/toastMessage';
 
 const store = configureStore({
   reducer: {
     allArt: allArtReducer,
     favorites: favoritesReducer,
-    theme: themeReducer
+    theme: themeReducer,
+    toast: toastReducer
   }
 });
 

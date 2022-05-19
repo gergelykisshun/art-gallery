@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import './Layout.css';
-import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import ToastMessage from '../ToastMessage/ToastMessage';
 
 export const toastMessageContext = React.createContext();
@@ -9,26 +10,9 @@ export const toastMessageContext = React.createContext();
 
 const Layout = ({children}) => {
 
-  //using the user info context
-  //Context for toast messages
-  const [toastMessage, setToastMessage] = useState({
-    isVisible: false,
-    msg: ''
-  })
+  const toastVisibility = useSelector(state => state.toast.isVisible);
+  console.log(toastVisibility)
 
-  const showToastMessage = (msg) => {
-    setToastMessage({
-      isVisible: true,
-      msg: msg
-    })
-  }
-
-  const removeToastMessage = () => {
-    setToastMessage({
-      isVisible: false,
-      msg: ''
-    })
-  };
 
   return (
       <div className='wrapper'>
@@ -47,12 +31,10 @@ const Layout = ({children}) => {
               </Link> */}
 
         </nav>
-        <toastMessageContext.Provider value={{removeToast: removeToastMessage, showToast: showToastMessage, toastInfo: toastMessage}}>
-          <main className='main-content'>
-            {children}
-            {toastMessage.isVisible && <ToastMessage msg={toastMessage.msg} removeToast={removeToastMessage}/>}
-          </main>
-        </toastMessageContext.Provider>
+        <main className='main-content'>
+          {children}
+          {toastVisibility && <ToastMessage />}
+        </main>
       </div>
   )
 }
