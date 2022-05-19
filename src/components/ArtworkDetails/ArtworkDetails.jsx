@@ -24,7 +24,7 @@ const ArtworkDetails = () => {
   };
 
   const removeFromFavorites = () => {
-    dispatch(removeFavorite(artWork.id))
+    dispatch(removeFavorite(artWork.id));
   };
 
 

@@ -15,13 +15,15 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   left: 0;
   height: 20px;
   width: 100%;
   padding-inline: 10px;
   background: linear-gradient(var(--primary-shade-from), var(--primary-shade-to));
   transition: 200ms;
+  transform: translateY(7%);
+
 }
 
 .artwork-card .artwork-details .title,
@@ -31,7 +33,8 @@
 }
 
 .artwork-card .artwork-details:hover {
-  height: 100px;
+  height: unset;
+  transform: translateY(0);
 }
 
 .artwork-card .artwork-details:hover > .title,
