@@ -1,9 +1,66 @@
 .artwork-card{
+  position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .artwork-card img {
-  width: 100px;
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
+}
+
+.artwork-card .artwork-details {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  padding-inline: 10px;
+  background: linear-gradient(var(--primary-shade-from), var(--primary-shade-to));
+  transition: 200ms;
+}
+
+.artwork-card .artwork-details .title,
+.artwork-card .artwork-details .details-btn {
+  opacity: 0;
+  transition: 200ms;
+}
+
+.artwork-card .artwork-details:hover {
   height: 100px;
 }
+
+.artwork-card .artwork-details:hover > .title,
+.artwork-card .artwork-details:hover > .details-btn {
+  opacity: 1;
+}
+
+.artwork-card .artwork-details .show-more-icon {
+  align-self: center;
+  transform: rotate(180deg);
+  transition: 200ms;
+}
+.artwork-card .artwork-details:hover > .show-more-icon{
+  transform: rotate(0deg);
+}
+
+
+.artwork-card .favorite-heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 37px;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--primary-color);
+  border-radius: var(--border-radius);
+  transition: 200ms;
+}
+
+.artwork-card .favorite-heart-icon:hover {
+  background-color: var(--bg3-form);
+} 

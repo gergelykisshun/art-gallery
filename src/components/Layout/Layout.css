@@ -1,30 +1,31 @@
 
 .wrapper {
-    display: flex;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
 }
 
 .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
     height: 100vh;
-    width: 240px;
+    width: 200px;
     padding: 20px 10px;
     border-right: 1px solid var(--text-inactive);
     background-color: var(--bg2);
     color: var(--text-active);
+    z-index: 10;
 }
 
 .main-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
     width: 100%;
-    padding: 20px;
+    padding: 70px 20px 20px 220px;
+    overflow: auto;
     color: var(--text-active);
 }
 
@@ -50,7 +51,7 @@
 }
 
 .sidebar a.active {
-    background-color: var(--bg3-form);
+    background: linear-gradient( var(--primary-shade-from) , var(--primary-shade-to) );
     border-radius: var(--border-radius);    
 }
 

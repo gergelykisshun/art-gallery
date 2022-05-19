@@ -44,7 +44,10 @@ select {
   --bg2: #25232E;
   --bg3-form: #555459;
   --primary-color: #08A7F3;
+  --primary-shade-from: #08A7F3;
+  --primary-shade-to: #0685c2; 
   --border-radius: 12px;
+  /* FFAC5F  FF4D3C ORANGE*/ /* 08A7F3  0685c2 BLUE*/ 
 }
 
 html {

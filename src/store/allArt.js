@@ -60,7 +60,10 @@ export const artSlice = createSlice({
     }).addCase(fetchImagesForArt.fulfilled, (state, action) => {
       state.images = action.payload;
       state.status = 'succeeded';
-    })
+    }).addCase(fetchImagesForArt.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    });
   }
 })
 

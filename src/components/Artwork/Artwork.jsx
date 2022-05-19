@@ -13,11 +13,11 @@ const Artwork = ({info, image}) => {
   return (
     <div className='artwork-card'>
       <img src={image} alt="artwork" />
-      <h2>{title}</h2>
-      <FavoriteBorderIcon />
-      <button>
-        <ExpandMoreIcon />
-        <p>Show details</p>
+      <FavoriteBorderIcon className='favorite-heart-icon'/>
+      <button className='artwork-details'>
+        <ExpandMoreIcon className="show-more-icon"/>
+        <h2 className='title'>{title}</h2>
+        <button className="details-btn">Show details</button>
       </button>
     </div>
   )
