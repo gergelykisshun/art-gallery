@@ -14,16 +14,29 @@
 .artwork-card .artwork-details {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 10px;
   position: absolute;
   bottom: 0;
   left: 0;
   height: 35px;
   width: 100%;
-  padding-inline: 10px;
+  padding: 0 10px 10px 10px;
   background: linear-gradient(var(--primary-shade-from), var(--primary-shade-to));
   transition: 300ms;
   transform: translateY(40%);
 
+}
+
+.artwork-details .details-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  height: 30px;
+  border-radius: var(--border-radius);
+  background-color: var(--text-active);
+  color: var(--primary-color);
 }
 
 .artwork-card .artwork-details .title,

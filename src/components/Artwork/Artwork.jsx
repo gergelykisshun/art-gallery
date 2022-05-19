@@ -27,11 +27,11 @@ const Artwork = ({info, image}) => {
     <div className='artwork-card'>
       <img src={image} alt="artwork" />
       {isFavorite ? <FavoriteIcon onClick={removeFromFavorites} className='favorite-heart-icon'/> : <FavoriteBorderIcon onClick={addToFavorites} className='favorite-heart-icon'/>}
-      <button className='artwork-details'>
+      <div className='artwork-details'>
         <ExpandMoreIcon className="show-more-icon"/>
         <h2 className='title'>{title}</h2>
         <Link to={queryString} className="details-btn">Show details</Link>
-      </button>
+      </div>
     </div>
   )
 }
