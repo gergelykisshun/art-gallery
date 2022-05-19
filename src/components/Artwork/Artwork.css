@@ -17,12 +17,12 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 20px;
+  height: 35px;
   width: 100%;
   padding-inline: 10px;
   background: linear-gradient(var(--primary-shade-from), var(--primary-shade-to));
-  transition: 200ms;
-  transform: translateY(7%);
+  transition: 300ms;
+  transform: translateY(40%);
 
 }
 
