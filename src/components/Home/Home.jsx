@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchImagesForArt } from '../../store/allArt';
+import { fetchImagesForArt, changeResultsPerPage, decreasePageNumber, incrementPageNumber } from '../../store/allArt';
 import Artwork from '../Artwork/Artwork';
 import CircularProgress from '@mui/material/CircularProgress';
 import './Home.css';
@@ -16,11 +16,9 @@ const Home = () => {
   const allArt = useSelector(state => state.allArt.artworks.data);
   const artStatus = useSelector(state => state.allArt.status);
   const artImages = useSelector(state => state.allArt.images);
+  const pagination = useSelector(state => state.allArt.pagination);
 
-  const [pagination, setPagination] = useState({
-    resultsPerPage: 25,
-    currentPage: 1
-  })
+
 
   const [search, setSearch] = useState('');
 
@@ -28,7 +26,7 @@ const Home = () => {
   // const favorites = useSelector(state => state.favorites.value);
 
   useEffect(() => {
-    dispatch(fetchImagesForArt(pagination))    
+    dispatch(fetchImagesForArt())    
   }, [dispatch, pagination])
 
 
@@ -67,27 +65,16 @@ const Home = () => {
     setSearch(e.target.value);
   };
 
-  const changeResultsPerPage = (e) => {
-    const {name, value} = e.target
-    setPagination(prev => ({
-      ...prev,
-      [name]: value
-    }))
+  const changeResultsHandler = (e) => {
+    dispatch(changeResultsPerPage(e.target.value))
   }
 
-  const incrementPageNumber = () => {
-    setPagination(prev => ({
-      ...prev, 
-      currentPage: prev.currentPage + 1
-    }))
-
+  const incrementPageHandler = () => {
+    dispatch(incrementPageNumber());
   };
 
-  const decreasePageNumber = () => {
-    setPagination(prev => ({
-      ...prev, 
-      currentPage: prev.currentPage - 1
-    }))
+  const decreasePageHandler = () => {
+    dispatch(decreasePageNumber());
   };
 
   return (
@@ -98,13 +85,13 @@ const Home = () => {
           <button className='primary-btn'>Search</button>
         </div>
         <div className='pagination-container'>
-          {pagination.currentPage > 1 && <button className="primary-btn" onClick={decreasePageNumber}>Previous page</button>}
+          {pagination.currentPage > 1 && <button className="primary-btn" onClick={decreasePageHandler}>Previous page</button>}
           <p>{pagination.currentPage}</p>
-          <button className="primary-btn" onClick={incrementPageNumber}>Next page</button>
+          <button className="primary-btn" onClick={incrementPageHandler}>Next page</button>
         </div>
         <label className='results-per-page-input-container'>
           Results per page
-          <input className="input-style" type="number" name="resultsPerPage" min="1" max="100" value={pagination.resultsPerPage} onChange={changeResultsPerPage}/>
+          <input className="input-style" type="number" name="resultsPerPage" min="1" max="100" value={pagination.resultsPerPage} onChange={changeResultsHandler}/>
         </label>
       </div>
       {content}

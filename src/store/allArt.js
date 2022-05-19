@@ -5,14 +5,15 @@ const initialState = {
   artworks: [],
   images: [],
   pagination: {
-    
+    resultsPerPage: 25,
+    currentPage: 1
   },
   status: 'idle',
   error: null
 }
 
-export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async (pagination, {dispatch, getState}) => {
-  await dispatch(fetchArt(pagination));
+export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async (params, {dispatch, getState}) => {
+  await dispatch(fetchArt());
 
   const state = getState();
   const allArtArray = state.allArt.artworks.data;
@@ -28,9 +29,10 @@ export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async 
   }));
 }));
 
-export const fetchArt = createAsyncThunk('allArt/fetchArt', async (pagination, {dispatch}) => {
+export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {dispatch, getState}) => {
+  const state = getState();
   try{
-    const { currentPage, resultsPerPage } = pagination;
+    const { currentPage, resultsPerPage } = state.allArt.pagination;
     const res = await fetch(`https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=${resultsPerPage}&fields=id,title,artist_display,image_id,department_title`);
     const allArtData = await res.json();
     return allArtData;
@@ -44,8 +46,14 @@ export const artSlice = createSlice({
   name: "allArt",
   initialState,
   reducers: {
-    getArtById: (state, action) => {
-      state.value = [...state.value, action.payload];
+    changeResultsPerPage: (state, action) => {
+      state.pagination.resultsPerPage = action.payload;
+    },
+    incrementPageNumber: (state) => {
+      state.pagination.currentPage += 1;
+    },
+    decreasePageNumber: (state) => {
+      state.pagination.currentPage -= 1;
     }
   },
   extraReducers: builder => {
@@ -70,6 +78,6 @@ export const artSlice = createSlice({
   }
 })
 
-export const { getArtById } = artSlice.actions;
+export const { changeResultsPerPage, incrementPageNumber, decreasePageNumber } = artSlice.actions;
 
 export default artSlice.reducer;
