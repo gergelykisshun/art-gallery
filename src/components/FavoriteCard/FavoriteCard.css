@@ -1,0 +1,49 @@
+.favorite-card {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.favorite-card .favorite-img {
+  width: 40vh;
+  height: 40vh;
+  object-fit: cover;
+}
+
+.favorite-card .favorite-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  width: 40vh;
+  padding: 20px;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+}
+
+
+.rm-fav-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  cursor:pointer;
+  background: linear-gradient(var(--primary-shade-from), var(--primary-shade-to));
+  border-radius: var(--border-radius);
+}
+
+.rm-fav-container:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.remove-question {
+  text-align: center;
+}
+
+.remove-choices-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}

@@ -61,7 +61,7 @@ body {
 
 .primary-btn {
   min-width: 80px;
-  /* height: 48px; */
+  height: 48px;
   padding: 8px;
   background: linear-gradient(var(--primary-shade-from), var(--primary-shade-to));
   border-radius: var(--border-radius);
