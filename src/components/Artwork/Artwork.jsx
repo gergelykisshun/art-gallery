@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './Artwork.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -7,8 +7,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const Artwork = ({info, image}) => {
 
-  const {artId} = useParams();
-  const {title} = info;
+  const {title, id} = info;
+  const queryString = `/artwork/${id}`
 
   return (
     <div className='artwork-card'>
@@ -17,7 +17,7 @@ const Artwork = ({info, image}) => {
       <button className='artwork-details'>
         <ExpandMoreIcon className="show-more-icon"/>
         <h2 className='title'>{title}</h2>
-        <button className="details-btn">Show details</button>
+        <Link to={queryString} className="details-btn">Show details</Link>
       </button>
     </div>
   )

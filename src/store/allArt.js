@@ -4,6 +4,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 const initialState = {
   artworks: [],
   images: [],
+  pagination: {
+    
+  },
   status: 'idle',
   error: null
 }

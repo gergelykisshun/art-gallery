@@ -58,11 +58,10 @@ const Home = () => {
     content = <div>Error page should come heres</div>
   }
   
-  
-  console.log(allArt)
-  console.log(artStatus)
-  console.log(artImages)
-  console.log(search)
+  // console.log(allArt)
+  // console.log(artStatus)
+  // console.log(artImages)
+  // console.log(search)
 
   const searchInputHandler = (e) => {
     setSearch(e.target.value);
