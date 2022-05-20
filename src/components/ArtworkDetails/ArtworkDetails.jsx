@@ -12,9 +12,10 @@ const ArtworkDetails = () => {
 
   // QUERY PARAMETER - IT IS THE ID OF THE IMAGE WE WANT DETAILS FOR
   const {artId} = useParams();
-  console.log(typeof artId);
+
   //  DECLARING VARIABLES
   let artWork, imageUrl;
+
   // FETCH ARTWORK
   const dispatch = useDispatch();
   const [fetching, setFetching] = useState(false);
@@ -41,7 +42,7 @@ const ArtworkDetails = () => {
     // FETCHING SINGLE ARTWORK 
     setFetching(true);
     artWork = soloArt;
-    imageUrl = soloImage;
+    imageUrl = soloImage[0];
     console.log(artWork);
     console.log(imageUrl)
     console.log(soloStatus)

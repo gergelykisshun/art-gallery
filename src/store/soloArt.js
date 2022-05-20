@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
   artwork: {},
-  image: '',
+  image: [],
   status: 'idle',
   error: null
 }
@@ -14,20 +14,15 @@ export const fetchSoloImage = createAsyncThunk('soloArt/fetchSingleImage', ( asy
   const artWork = state.soloArt.artwork.data;
   const iiif_api = state.soloArt.artwork.config.iiif_url;
 
-  if(artWork.image_id){
-    const res = await fetch(`${iiif_api}/${artWork.image_id}/full/843,/0/default.jpg`);
-    return res.url;
-  } else {
-    return null;
-  }
+  const res = await fetch(`${iiif_api}/${artWork.image_id}/full/843,/0/default.jpg`);
+  const response = res.url;
+  return await Promise.all([response]);
 }));
 
 export const fetchSoloArtwork = createAsyncThunk('soloArt/fetchSingleArtwork', ( async (artId, {dispatch, getState}) => {
   const res = await fetch(`https://api.artic.edu/api/v1/artworks/${artId}?fields=id,title,artist_display,image_id,department_title`);
   return res.json();
 }));
-
-// artId ? `https://api.artic.edu/api/v1/artworks/${artId}?fields=id,title,artist_display,image_id,department_title` 
 
 
 export const soloArtSlice = createSlice({
