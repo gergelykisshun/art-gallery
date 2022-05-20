@@ -68,3 +68,16 @@
   -moz-appearance: textfield;
 }
 
+@media screen and (max-width: 900px) {
+  .art-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .search-bar {
+    padding: 20px;
+  }
+}
+@media screen and (max-width: 650px) {
+  .art-container {
+    grid-template-columns: 1fr;
+  }
+}

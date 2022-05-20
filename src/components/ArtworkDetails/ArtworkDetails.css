@@ -11,3 +11,10 @@
   color: var(--primary-color);
   padding: 20px 0 0 5px;
 }
+
+@media screen and (max-width: 900px) {
+  .general-card {
+    flex-direction: column;
+    align-items: center;
+  }
+}

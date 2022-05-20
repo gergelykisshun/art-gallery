@@ -54,3 +54,27 @@
     background: linear-gradient( var(--primary-shade-from) , var(--primary-shade-to) );
     border-radius: var(--border-radius);    
 }
+
+@media screen and (max-width: 900px) {
+    .sidebar {
+      bottom: 0;
+      left: 0;
+      top: unset;
+      width: 100%;
+      height: 60px;
+      padding: 5px 10px;
+      border-top: 1px solid var(--text-inactive);
+    }
+    .sidebar .navlink-container {
+      flex-direction: row;
+    }
+
+    .main-content {
+      padding: 30px;
+    }
+  }
+  @media screen and (max-width: 650px) {
+    .art-container {
+      grid-template-columns: 1fr;
+    }
+  }

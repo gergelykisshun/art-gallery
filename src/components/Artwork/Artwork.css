@@ -85,3 +85,16 @@
 .artwork-card .favorite-heart-icon:hover {
   background-color: var(--bg3-form);
 } 
+
+
+@media screen and (max-width: 900px) {
+  .artwork-card img {
+    height: 50vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .artwork-card img {
+    height: 60vw;
+  }
+}
