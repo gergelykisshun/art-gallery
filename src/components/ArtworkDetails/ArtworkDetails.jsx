@@ -1,24 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { addFavorite, removeFavorite } from '../../store/favorites';
+import { fetchImagesForArt } from '../../store/allArt';
+
 import './ArtworkDetails.css';
 
 const ArtworkDetails = () => {
 
+  // QUERY PARAMETER - IT IS THE ID OF THE IMAGE WE WANT DETAILS FOR
   const {artId} = useParams();
+  console.log(typeof artId);
+  //  DECLARING VARIABLES
+  let artWork, imageUrl;
+  // FETCH ARTWORK
+  const dispatch = useDispatch();
+  const [fetching, setFetching] = useState(false);
+
+  useEffect(() => {
+    if(fetching){
+      console.log('fetched')
+      dispatch(fetchImagesForArt(artId))
+    }
+  }, [dispatch, fetching, artId])
+
+  // GETTING REDUX STATES
   const allArt = useSelector(state => state.allArt.artworks.data);
   const artImages = useSelector(state => state.allArt.images);
 
-  const artWork = allArt.filter(art => String(art.id) === artId)[0];
-  const imageUrl = artImages.filter(url => new RegExp(`${artWork.image_id}`).test(url))[0];
+  if (allArt && artImages && allArt.length === artImages.length){
+    // FILTERING DATA FOR ARTWORK 
+    artWork = allArt.filter(art => String(art.id) === artId)[0];
+    imageUrl = artImages.filter(url => new RegExp(`${artWork.image_id}`).test(url))[0];
+  } else {
+    setFetching(true);
+  }
   
-  const dispatch = useDispatch();
+
+  // LOGIC FOR FAVORITES
   const allFavorites = useSelector(state => state.favorites.favorites);
   const isFavorite = allFavorites.find(fav => String(fav.info.id) === artId);
 
+  // FAVORITE - ACTIONS
   const addToFavorites = () => {
     dispatch(addFavorite({info: artWork, image: imageUrl}));
   };
@@ -27,8 +52,7 @@ const ArtworkDetails = () => {
     dispatch(removeFavorite(artWork.id));
   };
 
-  const {title, artist_display, department_title} = artWork
-
+  // DECIDING FAVORITE BUTTON CONTENT
   let favoriteButton;
 
   if(isFavorite){
@@ -45,6 +69,8 @@ const ArtworkDetails = () => {
     </div>
   }
 
+  // DESTRUCTURING ARTWORK PROPERTIES
+  const {title, artist_display, department_title} = artWork
 
 
   return (
