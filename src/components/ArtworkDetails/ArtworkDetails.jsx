@@ -26,11 +26,7 @@ const ArtworkDetails = () => {
   const soloArt = useSelector(state => state.soloArt.artwork.data);
   const soloImage = useSelector(state => state.soloArt.image[0]);
   const soloStatus = useSelector(state => state.soloArt.status);
-
-  console.log(soloArt);
-  console.log(soloImage)
-  console.log(soloStatus)
-
+  
   // LOGIC FOR FAVORITES
   const allFavorites = useSelector(state => state.favorites.favorites);
   const isFavorite = allFavorites.find(fav => String(fav.info.id) === artId);

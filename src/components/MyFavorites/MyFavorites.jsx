@@ -14,7 +14,7 @@ const MyFavorites = () => {
       {
         allFavorites.length === 0 ? 
         <div>You have no favorites, yet! <Link style={{textDecoration:'underline', color:'var(--primary-color)'}} to="/">Check out our Artworks!</Link></div> :
-        allFavorites.map(({info, image}) => <FavoriteCard info={info} image={image}/>)
+        allFavorites.map(({info, image}) => <FavoriteCard key={image} info={info} image={image}/>)
       }
     </>
   )

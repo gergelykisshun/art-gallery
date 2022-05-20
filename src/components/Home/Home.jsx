@@ -47,7 +47,7 @@ const Home = () => {
   // console.log(artStatus)
   // console.log(artImages)
   // console.log(search)
-  console.log(searchQuery)
+  // console.log(searchQuery)
 
   const searchInputHandler = (e) => {
     setSearch(e.target.value);
