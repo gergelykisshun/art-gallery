@@ -13,28 +13,6 @@ const initialState = {
   error: null
 }
 
-export const fetchSingleArtwork = createAsyncThunk('allArt/fetchSingleImage', ( async (artId, {dispatch, getState}) => {
-  // await dispatch(fetchArt(artId));
-
-  const state = getState();
-
-  console.log(state.allArt.artworks);
-
-  const allArtArray = state.allArt.artworks.data;
-  const iiif_api = state.allArt.artworks.config.iiif_url;
-
-  return await Promise.all(allArtArray.map( async (img) => {
-    if(img.image_id){
-      const res = await fetch(`${iiif_api}/${img.image_id}/full/843,/0/default.jpg`)
-      return res.url;
-    } else {
-      return null;
-    }
-  }));
-}));
-
-
-
 export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async (params, {dispatch, getState}) => {
   await dispatch(fetchArt());
 
