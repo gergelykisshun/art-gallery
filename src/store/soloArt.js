@@ -7,6 +7,7 @@ const initialState = {
   error: null
 }
 
+// FETCH SOLO IMAGE THUNK
 export const fetchSoloImage = createAsyncThunk('soloArt/fetchSingleImage', ( async (artId, {dispatch, getState}) => {
   await dispatch(fetchSoloArtwork(artId));
 
@@ -20,6 +21,8 @@ export const fetchSoloImage = createAsyncThunk('soloArt/fetchSingleImage', ( asy
   return await Promise.all([response]);
 }));
 
+
+//FETCH SOLO ARTWORK THUNK
 export const fetchSoloArtwork = createAsyncThunk('soloArt/fetchSingleArtwork', ( async (artId, {dispatch, getState}) => {
 
   const res = await fetch(`https://api.artic.edu/api/v1/artworks/${artId}?fields=id,title,artist_display,image_id,department_title`);

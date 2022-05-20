@@ -13,11 +13,13 @@ const FavoriteCard = ({info, image}) => {
   const [isRemoving, setIsRemoving] = useState(false);
 
 
+  // DISPATCH REMOVE FROM FAVS ACTION
   const removeFromFavorites = () => {
     dispatch(removeFavorite(id));
     toggleRemove();
   };
 
+  // CHANGE STATE TO REMOVING A FAV QUESTION
   const toggleRemove = () => {
     setIsRemoving(prev => !prev);
   };

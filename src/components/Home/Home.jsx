@@ -6,13 +6,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import './Home.css';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 
 
 
 const Home = () => {
 
-  //REDUX
+  //REDUX STATES
   const dispatch = useDispatch()
   const allArt = useSelector(state => state.allArt.artworks.data);
   const artStatus = useSelector(state => state.allArt.status);
@@ -20,13 +21,16 @@ const Home = () => {
   const pagination = useSelector(state => state.allArt.pagination);
   const searchQuery = useSelector(state => state.allArt.searchQuery);
 
+  // STATE FOR SEARCH INPUT
   const [search, setSearch] = useState('');
 
+  // FETCH ARTWORKS AND IMAGES
   useEffect(() => {
     dispatch(fetchImagesForArt())    
   }, [dispatch, pagination, searchQuery])
 
 
+  // LOADING SPINNER IMPLEMENTATION
   let content;
 
   if(artStatus === 'loading'){
@@ -40,7 +44,7 @@ const Home = () => {
       {allArt.map((art,i) => artImages[i] && <Artwork key={art.id} image={artImages[i]} info={art}/>)}
     </div>
   } else if (artStatus === 'failed'){
-    content = <div>Error page should come heres</div>
+    content = <ErrorPage />
   }
   
   // console.log(allArt)
@@ -53,18 +57,22 @@ const Home = () => {
     setSearch(e.target.value);
   };
 
+  // DISPATCH SEARCH ACTION
   const startSearchHandler = () => {
     dispatch(startSearch(search));
   };
 
+  //DISPATCH CHANGE OF RESULTS ON PAGE ACTION
   const changeResultsHandler = (e) => {
     dispatch(changeResultsPerPage(e.target.value))
   }
 
+  //DISPATCH NEXT PAGE ACTION
   const incrementPageHandler = () => {
     dispatch(incrementPageNumber());
   };
 
+  //DISPATCH PREVIOUS PAGE ACTION
   const decreasePageHandler = () => {
     dispatch(decreasePageNumber());
   };

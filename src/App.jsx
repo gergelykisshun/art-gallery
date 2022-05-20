@@ -24,12 +24,3 @@ const App = () => {
 }
 
 export default App
-
-
-// useNavigate from react-router-dom
-// let navigate = useNavigate()
-// navigate("/url")
-
-// useParams
-//
-//

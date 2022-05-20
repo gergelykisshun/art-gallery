@@ -6,6 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { addFavorite, removeFavorite } from '../../store/favorites';
 import { fetchSoloImage } from '../../store/soloArt';
 import CircularProgress from '@mui/material/CircularProgress';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 
 import './ArtworkDetails.css';
@@ -82,7 +83,7 @@ const ArtworkDetails = () => {
       </div>
     </div>
   } else if (soloStatus === 'failed'){
-    content = <div>Error page should come heres</div>
+    content = <ErrorPage />
   }
 
 

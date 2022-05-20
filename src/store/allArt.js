@@ -13,6 +13,8 @@ const initialState = {
   error: null
 }
 
+
+// FETCH IMAGES FOR ARTWORKS THUNK
 export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async (params, {dispatch, getState}) => {
   await dispatch(fetchArt());
 
@@ -31,6 +33,7 @@ export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async 
   }));
 }));
 
+//FETCH ARTWORKS THUNK
 export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {dispatch, getState}) => {
   const state = getState();
   try{

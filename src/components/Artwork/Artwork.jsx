@@ -16,10 +16,12 @@ const Artwork = ({info, image}) => {
   const allFavorites = useSelector(state => state.favorites.favorites);
   const isFavorite = allFavorites.find(fav => fav.info.id === id);
 
+  // DISPATCH ADD TO FAV ACTION
   const addToFavorites = () => {
     dispatch(addFavorite({info, image}));
   };
 
+  // DISPATCH REMOVE FROM FAV ACTION
   const removeFromFavorites = () => {
     dispatch(removeFavorite(id))
   };
