@@ -8,13 +8,15 @@ import allArtReducer from './store/allArt';
 import favoritesReducer from './store/favorites';
 import themeReducer from './store/theme';
 import toastReducer from './store/toastMessage';
+import soloArtReducer from './store/soloArt';
 
 const store = configureStore({
   reducer: {
     allArt: allArtReducer,
     favorites: favoritesReducer,
     theme: themeReducer,
-    toast: toastReducer
+    toast: toastReducer,
+    soloArt: soloArtReducer
   }
 });
 

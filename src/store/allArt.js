@@ -13,10 +13,37 @@ const initialState = {
   error: null
 }
 
+export const fetchSingleArtwork = createAsyncThunk('allArt/fetchSingleImage', ( async (artId, {dispatch, getState}) => {
+  // await dispatch(fetchArt(artId));
+
+  const state = getState();
+
+  console.log(state.allArt.artworks);
+
+  const allArtArray = state.allArt.artworks.data;
+  const iiif_api = state.allArt.artworks.config.iiif_url;
+
+  return await Promise.all(allArtArray.map( async (img) => {
+    if(img.image_id){
+      const res = await fetch(`${iiif_api}/${img.image_id}/full/843,/0/default.jpg`)
+      return res.url;
+    } else {
+      return null;
+    }
+  }));
+}));
+
+// artId ? `https://api.artic.edu/api/v1/artworks/${artId}?fields=id,title,artist_display,image_id,department_title` 
+
+
+
 export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async (params, {dispatch, getState}) => {
   await dispatch(fetchArt());
 
   const state = getState();
+
+  console.log(state.allArt.artworks);
+
   const allArtArray = state.allArt.artworks.data;
   const iiif_api = state.allArt.artworks.config.iiif_url;
 
@@ -35,7 +62,8 @@ export const fetchArt = createAsyncThunk('allArt/fetchArt', async (params, {disp
   try{
     const { searchQuery } = state.allArt;
     const { currentPage, resultsPerPage } = state.allArt.pagination;
-    const res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${searchQuery}&page=${currentPage}&limit=${resultsPerPage}&fields=id,title,artist_display,image_id,department_title`);
+    const searchUrl = `https://api.artic.edu/api/v1/artworks/search?q=${searchQuery}&page=${currentPage}&limit=${resultsPerPage}&fields=id,title,artist_display,image_id,department_title`;
+    const res = await fetch(searchUrl);
     const allArtData = await res.json();
     return allArtData;
 

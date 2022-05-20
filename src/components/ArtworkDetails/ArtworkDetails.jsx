@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { addFavorite, removeFavorite } from '../../store/favorites';
-import { fetchImagesForArt } from '../../store/allArt';
+import { fetchSoloImage } from '../../store/soloArt';
 
 import './ArtworkDetails.css';
 
@@ -22,20 +22,29 @@ const ArtworkDetails = () => {
   useEffect(() => {
     if(fetching){
       console.log('fetched')
-      dispatch(fetchImagesForArt(artId))
+      dispatch(fetchSoloImage(artId))
     }
   }, [dispatch, fetching, artId])
 
-  // GETTING REDUX STATES
+  // GETTING REDUX STATES FOR ALL
   const allArt = useSelector(state => state.allArt.artworks.data);
   const artImages = useSelector(state => state.allArt.images);
+
+  // GETTING REDUX STATES FOR SOLO
+  const soloArt = useSelector(state => state.soloArt.artwork.data);
+  const soloImage = useSelector(state => state.soloArt.image);
 
   if (allArt && artImages && allArt.length === artImages.length){
     // FILTERING DATA FOR ARTWORK 
     artWork = allArt.filter(art => String(art.id) === artId)[0];
     imageUrl = artImages.filter(url => new RegExp(`${artWork.image_id}`).test(url))[0];
   } else {
+    // FETCHING SINGLE ARTWORK 
     setFetching(true);
+    artWork = soloArt;
+    imageUrl = soloImage;
+    console.log(artWork);
+    console.log(imageUrl)
   }
   
 
