@@ -20,10 +20,8 @@ const ArtworkDetails = () => {
   const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
-    if(fetching){
-      console.log('fetched')
-      dispatch(fetchSoloImage(artId))
-    }
+    console.log('fetched')
+    dispatch(fetchSoloImage(artId))
   }, [dispatch, fetching, artId])
 
   // GETTING REDUX STATES FOR ALL
@@ -33,6 +31,7 @@ const ArtworkDetails = () => {
   // GETTING REDUX STATES FOR SOLO
   const soloArt = useSelector(state => state.soloArt.artwork.data);
   const soloImage = useSelector(state => state.soloArt.image);
+  const soloStatus = useSelector(state => state.soloArt.status);
 
   if (allArt && artImages && allArt.length === artImages.length){
     // FILTERING DATA FOR ARTWORK 
@@ -45,6 +44,7 @@ const ArtworkDetails = () => {
     imageUrl = soloImage;
     console.log(artWork);
     console.log(imageUrl)
+    console.log(soloStatus)
   }
   
 

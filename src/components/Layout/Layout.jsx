@@ -11,8 +11,6 @@ export const toastMessageContext = React.createContext();
 const Layout = ({children}) => {
 
   const toastVisibility = useSelector(state => state.toast.isVisible);
-  console.log(toastVisibility)
-
 
   return (
       <div className='wrapper'>
