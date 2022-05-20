@@ -33,16 +33,12 @@ export const fetchSingleArtwork = createAsyncThunk('allArt/fetchSingleImage', ( 
   }));
 }));
 
-// artId ? `https://api.artic.edu/api/v1/artworks/${artId}?fields=id,title,artist_display,image_id,department_title` 
-
 
 
 export const fetchImagesForArt = createAsyncThunk('allArt/fetchImages', ( async (params, {dispatch, getState}) => {
   await dispatch(fetchArt());
 
   const state = getState();
-
-  console.log(state.allArt.artworks);
 
   const allArtArray = state.allArt.artworks.data;
   const iiif_api = state.allArt.artworks.config.iiif_url;
