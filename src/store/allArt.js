@@ -54,7 +54,11 @@ export const artSlice = createSlice({
   initialState,
   reducers: {
     changeResultsPerPage: (state, action) => {
-      state.pagination.resultsPerPage = action.payload;
+      let numberSent = action.payload;
+      if(parseInt(numberSent) > 100){
+        numberSent = '100';
+      }
+      state.pagination.resultsPerPage = numberSent;
     },
     incrementPageNumber: (state) => {
       state.pagination.currentPage += 1;
