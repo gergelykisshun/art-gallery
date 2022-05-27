@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImagesForArt, changeResultsPerPage, decreasePageNumber, incrementPageNumber, startSearch } from '../../store/allArt';
 import Artwork from '../Artwork/Artwork';
@@ -23,6 +23,9 @@ const Home = () => {
 
   // STATE FOR SEARCH INPUT
   const [search, setSearch] = useState('');
+
+  // REF FOR SEARCH BUTTON
+  const searchButton = useRef(null);
 
   // FETCH ARTWORKS AND IMAGES
   useEffect(() => {
@@ -77,12 +80,19 @@ const Home = () => {
     dispatch(decreasePageNumber());
   };
 
+  //SEARCH WITH ENTER KEY
+  const searchWithEnterKey = (e) => {
+    if (e.key === 'Enter'){
+      searchButton.current.click();
+    }
+  };
+
   return (
     <>
       <div className='search-bar'>
         <div className='search-container'>
-          <input className="input-style" type="text" name='search' value={search} onChange={searchInputHandler}/>
-          <button onClick={startSearchHandler} className='primary-btn'>Search</button>
+          <input className="input-style" type="text" name='search' value={search} onKeyDown={searchWithEnterKey} onChange={searchInputHandler}/>
+          <button ref={searchButton} onClick={startSearchHandler} className='primary-btn'>Search</button>
         </div>
         <div className='pagination-container'>
           {pagination.currentPage > 1 && <ArrowBackIosIcon className="pagination-arrow" onClick={decreasePageHandler}/>}
